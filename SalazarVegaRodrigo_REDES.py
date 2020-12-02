@@ -103,11 +103,12 @@ class Grafo:
         return self.nodos[numero]
  
  
+    def __iter__(self):
+        return iter(self.nodos.values())
+    
     def __len__(self):
         return len(self.nodos)
  
-    def __iter__(self):
-        return iter(self.nodos.values())
         
     def existe(self, origen, destino):
         return self.nodos[origen].adyacente(self.nodos[destino])
@@ -127,15 +128,17 @@ class Nodo:
  
     def getNodoAdyacentes(self):
         return self.nodos_adyacentes.keys()
- 
-    def peso(self, dest):
-        return self.nodos_adyacentes[dest]
     
     def adyacente(self, dest):
         if dest in self.nodos_adyacentes:
             return True
         else:
             return False 
+ 
+    def peso(self, dest):
+        return self.nodos_adyacentes[dest]
+    
+   
  
 def bellman_ford(grafo, origen):
     distancia = dict.fromkeys(grafo, float('inf'))
